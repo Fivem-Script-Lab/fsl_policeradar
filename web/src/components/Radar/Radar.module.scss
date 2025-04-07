@@ -1,0 +1,82 @@
+
+.radarContainer {
+    position: relative;
+    left: 0vw;
+    top: 0vh;
+
+    width:  100vw;
+    height: 100vh;
+
+}
+
+.radar {
+    position: absolute;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    width: fit-content;
+    height: fit-content;
+
+
+    border-radius: 0.15rem;
+    background-color: (var(--mantine-color-dark-9));
+}
+
+.group {
+    border-radius: 0.1rem;
+
+    .plateContainer {
+        position: relative;
+        padding: 0;
+        img {
+            width: 7.5rem;
+        }
+        .plate {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #2d307e;
+            white-space: nowrap;
+            transform: translate(-50%, -25%);
+        }
+    }
+
+}
+
+.infoBox {
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+
+
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 0.5rem;
+    border-radius: 0.15rem;
+    background-color: (var(--mantine-color-dark-9));
+}
+
+.configBox {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+
+
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 0.8rem;
+    border-radius: 0.15rem;
+    background-color: (var(--mantine-color-dark-9));
+}
