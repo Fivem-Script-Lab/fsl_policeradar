@@ -13,7 +13,7 @@ ui_page 'web/build/index.html'
 
 client_script 'client/**/*'
 
-server_script 'server/**/*'
+--server_script 'server/**/*'
 
 shared_scripts {
     '@ox_lib/init.lua',
