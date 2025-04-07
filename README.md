@@ -3,7 +3,7 @@ The script allows police to have a front and back radar, which shows speed and p
 
 ### Dependencies
 - ox_lib
-- Currently only suport ESX
+- Currently only support ESX
 
 [Discord Support Server](https://discord.gg/XFgWTCxuvr)
 
