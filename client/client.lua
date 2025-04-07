@@ -48,7 +48,7 @@ local function getVehicleData(vehicle)
     if not vehicle or not IsEntityAVehicle(vehicle) then return end
 
     local plate = GetVehicleNumberPlateText(vehicle)
-    local speed = GetEntitySpeed(vehicle) * 3.6
+    local speed = GetEntitySpeed(vehicle) * 2.236936
 
     return { plate = plate, speed = math.floor(speed) }
 end
