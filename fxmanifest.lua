@@ -13,7 +13,7 @@ ui_page 'http://localhost:5173/'
 
 client_script 'client/**/*'
 
-server_script 'server/**/*'
+--server_script 'server/**/*'
 
 shared_scripts {
     '@ox_lib/init.lua',
