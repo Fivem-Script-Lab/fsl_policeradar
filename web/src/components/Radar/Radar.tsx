@@ -6,6 +6,7 @@ import {
     Image,
     Indicator,
     Kbd,
+    SegmentedControl,
     Switch,
     Text,
     Title,
@@ -42,6 +43,11 @@ export const Radar: FC<Props> = ({
         return stored ? JSON.parse(stored) : { x: 0.83, y: 0.7 };
     });
 
+    const [speedUnit, setSpeedUnit] = useState<string>(() => {
+        const stored = localStorage.getItem('speedUnit');
+        return stored || 'mph';
+    });
+
     const { ref } = useMove(({ x, y }) => {
         if (canMove && canMoveObject) {
             setValue({ x, y });
@@ -62,6 +68,10 @@ export const Radar: FC<Props> = ({
         localStorage.setItem('radarPosition', JSON.stringify(value));
     }, [value]);
 
+    useEffect(() => {
+        localStorage.setItem('speedUnit', speedUnit);
+    }, [speedUnit]);
+
     HandleNuiMessage('blockRadar', (data: BlockData) => {
         if (data.side === 'front') {
             setFrontBlock(data.blocked);
@@ -69,6 +79,14 @@ export const Radar: FC<Props> = ({
             setBackBlock(data.blocked);
         }
     });
+
+    const speed = (value: number) => {
+        if (speedUnit === 'mph') {
+            return Math.round(value * 2.23694);
+        } else {
+            return Math.round(value * 3.6);
+        }
+    };
 
     return (
         <Container ref={ref} p={'lg'} fluid className={classes.radarContainer}>
@@ -110,7 +128,10 @@ export const Radar: FC<Props> = ({
                         </Container>
 
                         <Title c='gray.1' fz={15} fw={400} mt={10}>
-                            {radarData.front?.speed || 0} mph
+                            {radarData.front?.speed
+                                ? speed(radarData.front.speed)
+                                : 0}{' '}
+                            {speedUnit}
                         </Title>
                     </Flex>
                 </Indicator>
@@ -134,7 +155,10 @@ export const Radar: FC<Props> = ({
                             </Text>
                         </Container>
                         <Title c='gray.1' fz={15} fw={400} mt={10}>
-                            {radarData.back?.speed || 0} mph
+                            {radarData.back?.speed
+                                ? speed(radarData.back.speed)
+                                : 0}{' '}
+                            {speedUnit}
                         </Title>
                     </Flex>
                 </Indicator>
@@ -168,6 +192,17 @@ export const Radar: FC<Props> = ({
                                         Display police radar
                                     </Text>
                                 }
+                            />
+                            <SegmentedControl
+                                w='100%'
+                                color='blue'
+                                radius='sm'
+                                value={speedUnit}
+                                onChange={setSpeedUnit}
+                                data={[
+                                    { label: 'mph', value: 'mph' },
+                                    { label: 'km/h', value: 'km/h' },
+                                ]}
                             />
                             <Button
                                 variant='light'
